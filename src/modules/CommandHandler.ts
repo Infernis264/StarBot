@@ -3,16 +3,17 @@ import StarDB from "./StarDB";
 import Message from "./Message";
 import UserTracker from "./UserTracker";
 import ChatActivityLog from "./ChatActivityLog";
+import Auth from "../auth/Auth";
 
-const db = new StarDB("" /* mongodb database url */);
+const db = new StarDB(Auth.DB_URL);
 
-type Color = "gold" | "brown" | "green";
+type Color = "gold" | "brown" | "green" | "silver";
 
-let colors = ["green", "gold", "brown"];
+let colors = ["green", "gold", "brown", "silver"];
 
 export default class CommandHandler {
 
-	public static ENABLED = ["goldstar", "brownstar", "greenstar", "stars", "reset", "set"];
+	public static ENABLED = ["goldstar", "brownstar", "greenstar", "silverstar", "stars", "reset", "set"];
 
 	private tracker: UserTracker;
 
@@ -32,6 +33,7 @@ export default class CommandHandler {
 			case "goldstar":
 			case "greenstar":
 			case "brownstar":
+			case "silverstar":
 				// return early if no user is specified
 				if (!params[0]) return new Message({template: "noStar"});
 				if(this.hasPermission(user)) {
