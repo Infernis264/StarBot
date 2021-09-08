@@ -4,9 +4,8 @@ interface MessageParameters {
 		green: number;
 		gold: number;
 		brown: number;
-		silver: number;
 	};
-	active?: "green" | "gold" | "brown" | "silver";
+	active?: "green" | "gold" | "brown";
 	user?: string;
 	template: string;
 	ngiven?: number;
@@ -15,7 +14,7 @@ interface MessageParameters {
 export default class Message {
 
 	public static templates = {
-		listStars: "{user} has {gold} gold stars, {brown} brown stars, {green} green stars, and {silver} silver stars",
+		listStars: "{user} has {gold} gold stars, {brown} brown stars, and {green} green stars",
 		giveStar: "{user} received {ngiven} {color} star{ngplural}! {colormsg} They have {total} {color} stars in total",
 		absentUser: "It seems like {user} isn't here right now. Try giving them some stars later!",
 		noStar: "You can't give a star to nobody!",
@@ -31,7 +30,6 @@ export default class Message {
 		green: "Gross.",
 		gold: "You will now have happy time and good life!",
 		brown: "Now go and think about what you've done.",
-		silver: "Hectique looks upon you favorably."
 	} as {[key: string]: string};
 
 	private content: string;
@@ -45,7 +43,6 @@ export default class Message {
 					case "green":
 					case "gold":
 					case "brown":
-					case "silver":
 						return this.cap(msg.starColors[sub]+"");
 					case "colormsg":
 						return Message.colorFlavor[msg.active];

@@ -94,7 +94,7 @@ export default class UserTracker {
 		return allUsers.includes(user) ? user : null;
 	}
 
-  /** @deprecated */
+  	/** @deprecated */
 	public isSuperUser(channel: string, user: string): boolean {
 		return this.channelList[channel].superusers.includes(user);
 	}

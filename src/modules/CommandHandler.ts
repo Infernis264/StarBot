@@ -7,13 +7,13 @@ import Auth from "../auth/Auth";
 
 const db = new StarDB(Auth.DB_URL);
 
-type Color = "gold" | "brown" | "green" | "silver";
+type Color = "gold" | "brown" | "green";
 
-let colors = ["green", "gold", "brown", "silver"];
+let colors = ["green", "gold", "brown"];
 
 export default class CommandHandler {
 
-	public static ENABLED = ["goldstar", "brownstar", "greenstar", "silverstar", "stars", "reset", "set"];
+	public static ENABLED = ["goldstar", "brownstar", "greenstar", "stars", "reset", "set"];
 
 	private tracker: UserTracker;
 
@@ -33,7 +33,6 @@ export default class CommandHandler {
 			case "goldstar":
 			case "greenstar":
 			case "brownstar":
-			case "silverstar":
 				// return early if no user is specified
 				if (!params[0]) return new Message({template: "noStar"});
 				if(this.hasPermission(user)) {

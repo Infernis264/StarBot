@@ -4,8 +4,7 @@ import * as mongoose from "mongoose";
 const StarCount = new mongoose.Schema({
 	brown: Number,
 	gold: Number,
-	green: Number,
-	silver: Number
+	green: Number
 });
 
 const User = mongoose.model("User", new Schema({
@@ -24,10 +23,9 @@ interface Stars {
 	brown: number;
 	gold: number;
 	green: number;
-	silver: number;
 }
 
-type Color = "brown" | "gold" | "green" | "silver";
+type Color = "brown" | "gold" | "green";
 
 export default class StarDB {
 	/**
@@ -51,8 +49,7 @@ export default class StarDB {
 			stars: {
 				green: 0,
 				gold: 0,
-				brown: 0,
-				silver: 0
+				brown: 0
 			}
 		});
 		await chatUser.save();
@@ -109,7 +106,7 @@ export default class StarDB {
 	 */
 	public async resetUser(name: string, channel: string, color?: Color): Promise<boolean> {
 		let updatedCount = color ? {[`stars.${color}`]:0} : {
-			stars: {green: 0, brown: 0, gold: 0, silver: 0}
+			stars: {green: 0, brown: 0, gold: 0}
 		}
 		return (await User.updateOne({
 			name: name.toLowerCase(),

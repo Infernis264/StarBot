@@ -105,3 +105,5 @@ dist
 
 # Twitch Authorization Token
 auth/
+build/
+old/
